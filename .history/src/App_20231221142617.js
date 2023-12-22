@@ -2,13 +2,7 @@ import "./App.css";
 // import About from "./components/About";
 import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
-import About from "./components/About";
 import React, {useState} from "react";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-} from "react-router-dom";
 
 
 function App() {
@@ -20,22 +14,16 @@ function App() {
       }
       else{
         setMode('light');
-        document.body.style.backgroundColor = 'white';
+        document.body.style.backgroundColor = 'light';
       }
   }
   return (
-    <>
-      
-      <BrowserRouter>
-      <Navbar title = "TextUtils"  mode={mode} toggleMode = {toggleMode}/>
+    <> 
+      <Navbar title = "TextUtils" aboutText = "About" mode={mode} toggleMode = {toggleMode}/>
       <div className="container my-3">
-      
-      <Routes>
-      <Route path='/' element={<TextForm heading = "Enter the text to analyze" mode={mode}/>} />
-      <Route path='/about' element={<About/>} />
-      </Routes>
+      <TextForm heading = "Enter the text to analyze" mode={mode}/>
+      {/* <About/> */}
       </div>
-      </BrowserRouter>
     </>
   );
 }

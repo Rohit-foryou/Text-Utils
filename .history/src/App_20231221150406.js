@@ -5,9 +5,10 @@ import TextForm from "./components/TextForm";
 import About from "./components/About";
 import React, {useState} from "react";
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
+  Switch,
   Route,
-  Routes,
+  Link
 } from "react-router-dom";
 
 
@@ -25,17 +26,20 @@ function App() {
   }
   return (
     <>
-      
-      <BrowserRouter>
-      <Navbar title = "TextUtils"  mode={mode} toggleMode = {toggleMode}/>
+      <Router>
+      <Navbar title = "TextUtils" aboutText = "About" mode={mode} toggleMode = {toggleMode}/>
       <div className="container my-3">
-      
-      <Routes>
-      <Route path='/' element={<TextForm heading = "Enter the text to analyze" mode={mode}/>} />
-      <Route path='/about' element={<About/>} />
-      </Routes>
+      <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          
+          <Route path="/">
+            <TextForm heading = "Enter the text to analyze" mode={mode}/>
+          </Route>
+      </Switch>
       </div>
-      </BrowserRouter>
+      </Router> 
     </>
   );
 }
